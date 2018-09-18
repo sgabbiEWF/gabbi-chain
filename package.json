@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-test": "nodemon dev-test"
+    "dev-test": "nodemon dev-test",
+    "start": "node ./app",
+    "dev" : "nodemon ./app"
   },
   "author": "sivagabbi",
   "license": "ISC",
