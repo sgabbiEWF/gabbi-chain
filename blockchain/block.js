@@ -1,4 +1,3 @@
-const SHA256 = require('crypto-js/sha256');
 const Utilities = require('../utilities.js');
 const {DIFFICULTY, MINE_RATE} = require('../config.js');
 
@@ -14,10 +13,6 @@ class Block{
 
     static Genesis(){
         return new this(Date.now(), "---", "This is the genesis block", "blah blah ");
-    }
-
-    static hash(timestamp, lastHash, data) {
-        return SHA256(`${timestamp}${lastHash}${data}`).toString();
     }
 
     returnBlock(){
@@ -42,8 +37,6 @@ class Block{
             difficulty = Block.adjustDifficulty(lastBlock, timestamp);
             hash = Block.hash(timestamp, lastBlockHash, data, nonce, difficulty);
           } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
-      
-
 
         const thisBlockData = data;
         const thisBlockHash = Block.hash(timeStamp, lastBlockHash, thisBlockData);
@@ -51,7 +44,7 @@ class Block{
     }
 
     static hash(timestamp, lastHash, data, nonce, difficulty) {
-        return ChainUtil.hash(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
+        return Utilities.hash(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
     }
 
     static blockHash(block) {
