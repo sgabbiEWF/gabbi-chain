@@ -8,7 +8,7 @@ class BlockChain{
     addBlock(data){
         const block = Block.mineBlock(this.chain[this.chain.length-1], data);
         this.chain.push(block);
-        return this.chain, block;
+        return block;
     }
 
     isChainValid(chain) {
