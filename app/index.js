@@ -1,6 +1,6 @@
 const express = require('express');
-const blockChain = require("../blockchain.js");
-const block = require("../block.js");
+const blockChain = require("../blockchain/blockchain.js");
+const block = require("../blockchain/block.js");
 const HTTP_PORT = process.env.HTTP_PORT || 3001;  
 const bodyParser = require('body-parser');
 const app = express();
