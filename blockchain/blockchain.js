@@ -26,14 +26,16 @@ class BlockChain{
         return true;
       }
 
-    replaceChain(chain) {
-        if(!(this.isChainValid(chain)) && this.chain.length> chain.length){
-            this.chain = chain;
-            console.log("chain cannot be replaced ");
-        } 
-        else{
-            console.log("this chain is not worth replacing");
+    replaceChain(newChain) {
+        if (newChain.length <= this.chain.length) {
+            console.log('Received chain is not longer than the current chain.');
+            return;
+        } else if (!this.isValidChain(newChain)) {
+            console.log('The received chain is not valid.');
+            return;
         }
+        console.log('Replacing blockchain with the new chain.');
+        this.chain = newChain;
     }
 }
 
