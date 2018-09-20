@@ -12,10 +12,10 @@ class Block{
         }
 
     static Genesis(){
-        return new this(Date.now(), "---", [], "This is a dummy hash", 0, DIFFICULTY);
+        return new this("Genesis time", "---", [], "This is a dummy hash for the genesis block", 0, DIFFICULTY);
     }
 
-    returnBlock(){
+    toString(){
         return ` Block is:
         timeStamp:      ${this.timeStamp}
         lastBlockHash:  ${this.lastBlockHash}
@@ -39,17 +39,17 @@ class Block{
           } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
 
         const thisBlockData = data;
-        const thisBlockHash = this.hash(timeStamp, lastBlockHash, thisBlockData);
-        return new this(timeStamp, lastBlockHash, thisBlockData, thisBlockHash);
+        const thisBlockHash = this.hash(timeStamp, lastBlockHash, thisBlockData, nonce, difficulty);
+        return new this(timeStamp, lastBlockHash, thisBlockData, thisBlockHash, nonce, difficulty);
     }
 
-    static hash(timestamp, lastHash, data, nonce, difficulty) {
-        return Utilities.hash(`${timestamp}${lastHash}${data}${nonce}${difficulty}`).toString();
+    static hash(timestamp, lastBlockHash, thisBlockData, nonce, difficulty) {
+        return Utilities.hash(`${timestamp}${lastBlockHash}${thisBlockData}${nonce}${difficulty}`).toString();
     }
 
     static blockHash(block) {
-        const { timestamp, lastHash, data, nonce, difficulty } = block;
-        return Block.hash(timestamp, lastHash, data, nonce, difficulty);
+        const { timeStamp, lastBlockHash, thisBlockData, nonce, difficulty } = block;
+        return Block.hash(timeStamp, lastBlockHash, thisBlockData, nonce, difficulty);
     }
     
     static adjustDifficulty(lastBlock, currentTime) {

@@ -7,6 +7,7 @@ class Wallet {
     this.balance = INITIAL_BALANCE;
     this.keyPair = Utilities.genKeyPair();
     this.publicKey = this.keyPair.getPublic().encode('hex');
+    console.log("wallet created");
   }
 
   toString() {

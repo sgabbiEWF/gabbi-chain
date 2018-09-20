@@ -3,10 +3,10 @@ const Transaction = require('./transaction');
 class TransactionPool {
   constructor() {
     this.transactions = [];
+    console.log("transaction pool initiated");
   }
 
   updateOrAddTransaction(transaction) {
-    console.log("update transaction triggered");
     let transactionWithId = this.transactions.find(t => t.id === transaction.id);
 
     if (transactionWithId) {

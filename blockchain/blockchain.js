@@ -17,8 +17,8 @@ class BlockChain{
           const block = chain[i];
           const lastBlock = chain[i-1];
           if (
-            block.lastHash !== lastBlock.hash ||
-            block.hash !== Block.blockHash(block)
+            block.lastBlockHash !== lastBlock.thisBlockHash ||
+            block.thisBlockHash !== Block.blockHash(block)
           ) {
             return false;
           }
@@ -27,6 +27,9 @@ class BlockChain{
       }
 
     replaceChain(newChain) {
+        console.log(newChain);
+
+        
         if (newChain.length <= this.chain.length) {
             console.log('Received chain is not longer than the current chain.');
             return;
