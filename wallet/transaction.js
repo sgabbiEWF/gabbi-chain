@@ -1,6 +1,8 @@
 const Utilities = require('../utilities');
 const { MINING_REWARD } = require('../config');
 
+
+
 class Transaction {
   constructor() {
     this.id = Utilities.id();
@@ -22,6 +24,7 @@ class Transaction {
 
     return this;
   }
+  // 
 
   static transactionWithOutputs(senderWallet, outputs) {
     const transaction = new this();
@@ -29,6 +32,7 @@ class Transaction {
     Transaction.signTransaction(transaction, senderWallet);
     return transaction;
   }
+  // new Transaction initialization below: needs sender wallet, recipient public key and amount 
 
   static newTransaction(senderWallet, recipient, amount) {
     if (amount > senderWallet.balance) {
@@ -53,15 +57,15 @@ class Transaction {
       timestamp: Date.now(),
       amount: senderWallet.balance,
       address: senderWallet.publicKey,
-      signature: senderWallet.sign(ChainUtil.hash(transaction.outputs))
+      signature: senderWallet.sign(Utilities.hash(transaction.outputs))
     }
   }
 
   static verifyTransaction(transaction) {
-    return ChainUtil.verifySignature(
+    return Utilities.verifySignature(
       transaction.input.address,
       transaction.input.signature,
-      ChainUtil.hash(transaction.outputs)
+      Utilities.hash(transaction.outputs)
     );
   }
 }

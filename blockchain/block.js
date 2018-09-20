@@ -12,17 +12,17 @@ class Block{
         }
 
     static Genesis(){
-        return new this(Date.now(), "---", "This is the genesis block", "blah blah ");
+        return new this(Date.now(), "---", [], "This is a dummy hash", 0, DIFFICULTY);
     }
 
     returnBlock(){
         return ` Block is:
         timeStamp:      ${this.timeStamp}
         lastBlockHash:  ${this.lastBlockHash}
-        thisBlockData:  ${this.thisBlockData}
         thisBlockHash:  ${this.thisBlockHash}
         Nonce:          ${this.nonce}
-        Difficulty:     ${this.difficulty} `;
+        Difficulty:     ${this.difficulty} 
+        thisBlockData:  ${this.thisBlockData} `;
     }
 
     static mineBlock(lastBlock, data){
@@ -39,7 +39,7 @@ class Block{
           } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
 
         const thisBlockData = data;
-        const thisBlockHash = Block.hash(timeStamp, lastBlockHash, thisBlockData);
+        const thisBlockHash = this.hash(timeStamp, lastBlockHash, thisBlockData);
         return new this(timeStamp, lastBlockHash, thisBlockData, thisBlockHash);
     }
 

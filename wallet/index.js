@@ -20,6 +20,7 @@ class Wallet {
   }
 
   createTransaction(recipient, amount, blockchain, transactionPool) {
+    console.log("creating the transaction");
     this.balance = this.calculateBalance(blockchain);
 
     if (amount > this.balance) {
@@ -40,9 +41,11 @@ class Wallet {
   }
 
   calculateBalance(blockchain) {
+    console.log("calculating balance");
     let balance = this.balance;
     let transactions = [];
-    blockchain.chain.forEach(block => block.data.forEach(transaction => {
+    blockchain.chain.forEach(Block => console.log(Block));
+    blockchain.chain.forEach(Block => Block.thisBlockData.forEach(transaction => {
       transactions.push(transaction);
     }));
 

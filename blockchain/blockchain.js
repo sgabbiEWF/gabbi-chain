@@ -30,7 +30,7 @@ class BlockChain{
         if (newChain.length <= this.chain.length) {
             console.log('Received chain is not longer than the current chain.');
             return;
-        } else if (!this.isValidChain(newChain)) {
+        } else if (!this.isChainValid(newChain)) {
             console.log('The received chain is not valid.');
             return;
         }

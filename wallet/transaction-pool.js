@@ -6,6 +6,7 @@ class TransactionPool {
   }
 
   updateOrAddTransaction(transaction) {
+    console.log("update transaction triggered");
     let transactionWithId = this.transactions.find(t => t.id === transaction.id);
 
     if (transactionWithId) {
