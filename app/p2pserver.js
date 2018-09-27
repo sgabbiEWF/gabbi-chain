@@ -49,7 +49,6 @@ class P2pServer {
             const data = JSON.parse(message);
             switch(data.type) {
               case MESSAGE_TYPES.chain:
-                console.log("replacing chain");
                 this.blockchain.replaceChain(data.chain);
                 break;
               case MESSAGE_TYPES.transaction:
@@ -67,6 +66,7 @@ class P2pServer {
             type: MESSAGE_TYPES.chain,
             chain: this.blockchain.chain
         }));
+        console.log("the sent chain is:" + this.blockchain.chain);
     }
 
     sendTransaction(socket, transaction) {
