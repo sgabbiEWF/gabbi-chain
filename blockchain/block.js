@@ -27,7 +27,9 @@ class Block{
 
     static mineBlock(lastBlock, data){
         let hash, timeStamp;
+        //console.log("the last block is: " + lastBlock);
         const lastBlockHash = lastBlock.thisBlockHash;
+        //console.log('thisBlockHash of last block is: ' + lastBlockHash);
         let {difficulty} = lastBlock;
         let nonce = 0;
         do {
@@ -39,7 +41,7 @@ class Block{
 
         const thisBlockData = data;
         //console.log("values used for calculating this hash are: " + timeStamp + lastBlockHash + thisBlockData + nonce + difficulty);
-        //const thisBlockHash = this.hash(timeStamp, lastBlockHash, thisBlockData, nonce, difficulty);
+        const thisBlockHash = this.hash(timeStamp, lastBlockHash, thisBlockData, nonce, difficulty);
         //console.log("sending hash of this block is: " + thisBlockHash);
         return new this(timeStamp, lastBlockHash, thisBlockData, thisBlockHash, nonce, difficulty);
     }

@@ -6,6 +6,7 @@ class BlockChain{
     }
     
     addBlock(data){
+        console.log("the add block value from bc: " + data);
         const block = Block.mineBlock(this.chain[this.chain.length-1], data);
         this.chain.push(block);
         return block;
